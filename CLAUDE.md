@@ -77,5 +77,6 @@ If gstack skills aren't working, run `cd .claude/skills/gstack && ./setup` to bu
 
 ## Git Workflow
 
-- PRs should target the `dev` branch, not `main`
-- Current development branch: `dev`
+- `main` is the working branch with local customizations; the daily scheduled workflow runs this branch
+- `dev` is a read-only mirror of the upstream `main` branch (TideDra/zotero-arxiv-daily), never commit to it
+- PRs should target the `main` branch

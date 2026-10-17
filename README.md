@@ -25,6 +25,16 @@
 > [!IMPORTANT]
 > Please keep an eye on this repo, and merge your forked repo in time when there is any update of this upstream, in order to enjoy new features and fix found bugs.
 
+## Update REPO
+git fetch upstream
+git switch main
+git merge --ff-only upstream/main
+git push origin main
+
+git switch dev
+git rebase main
+git push --force-with-lease origin dev
+
 ## 🧐 About <a name = "about"></a>
 
 > Track new scientific researches of your interest by just forking (and staring) this repo!😊

@@ -26,14 +26,28 @@
 > Please keep an eye on this repo, and merge your forked repo in time when there is any update of this upstream, in order to enjoy new features and fix found bugs.
 
 ## Update REPO
-git fetch upstream
-git switch main
-git merge --ff-only upstream/main
-git push origin main
 
+Branch layout of this fork:
+
+- `main` — my own customized code (the daily GitHub Action workflow runs this branch)
+- `dev` — mirror of the upstream `main` branch
+
+Sync the mirror from upstream:
+
+```bash
+git fetch upstream
 git switch dev
-git rebase main
+git merge --ff-only upstream/main
 git push --force-with-lease origin dev
+```
+
+Then apply upstream updates into my branch:
+
+```bash
+git switch main
+git merge dev
+git push origin main
+```
 
 ## 🧐 About <a name = "about"></a>
 

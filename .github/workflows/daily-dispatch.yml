@@ -1,0 +1,21 @@
+name: Daily Dispatch
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 20:17 UTC = 04:17 Asia/Shanghai (next day)
+    - cron: '17 20 * * *'
+
+permissions:
+  actions: write
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger main workflow via API
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run main.yml --repo "${{ github.repository }}" --ref main
+          echo "Dispatched main.yml on $(date -u +'%Y-%m-%d %H:%M:%S UTC')"

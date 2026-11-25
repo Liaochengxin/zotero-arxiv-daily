@@ -1,10 +1,13 @@
 name: Daily Dispatch
 
+# Manual fallback only. Daily sending is triggered by an external cron
+# service (cron-job.org) at 07:00 Asia/Shanghai via the GitHub API:
+#   POST /repos/Liaochengxin/zotero-arxiv-daily/actions/workflows/main.yml/dispatches
+#   body: {"ref":"main"}
+# GitHub's built-in schedule was removed because its shared queue delayed
+# runs by 4-8.5 hours (observed 2026-11-18..24), pushing emails past noon.
 on:
-  workflow_dispatch:
-  schedule:
-    # 20:17 UTC = 04:17 Asia/Shanghai (next day)
-    - cron: '17 20 * * *'
+  workflow_dispatch
 
 permissions:
   actions: write
